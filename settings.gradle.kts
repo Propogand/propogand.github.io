@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MathSdk"
 include(":app")
- 
+include(":mathsdk")

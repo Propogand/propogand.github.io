@@ -1,6 +1,18 @@
+import org.jetbrains.kotlin.gradle.plugin.extraProperties
+
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
+}
+
+extraProperties {
+    val publishGroupId = "com.github.propogand"
+    val publishVersion = "0.0.1"
+    val publishArtifactId = "mathsdk"
+}
+
+apply {
+    from("${rootDir}/scripts/publish-module.gradle")
 }
 
 android {
@@ -8,13 +20,10 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.github.propogand.mathsdk"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,7 +45,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":mathsdk"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
